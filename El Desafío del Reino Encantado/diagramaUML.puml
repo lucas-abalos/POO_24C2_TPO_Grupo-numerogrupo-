@@ -1,0 +1,63 @@
+@startuml reinoEncantado
+skinparam classAttributeIconSize 0
+
+class Jugador{
+- nivelExperiencia: int
+- heroe: Heroe
+}
+
+abstract class Personaje{
+- nombre: String
+- vida: int
+- nivelAtaque: int
+- nivelDefensa: int
++ mejorarAtaque(cantidad: int): boolean
++ mejorarDefensa(cantidad: int): boolean
+}
+
+abstract class Heroe{
+- duenio : Jugador
+}
+
+abstract class Criatura{
+}
+
+class Mago{
++ curar()
++ inmunecontraespectros()
+}
+
+class Guerrero{
++ duplicarAtaque()
++ derribarTrolls()
+}
+
+class Arquero{
+- punteria: int
+- agilidad: int
++ esquivarGolpe(): boolean
+}
+
+class Dragon{
+}
+
+class Troll{
+}
+
+class Espectro{
+}
+
+
+Jugador "1" o- "1" Heroe: controla
+Personaje <|-- Heroe
+Personaje <|-- Criatura
+Heroe <|-- Arquero
+Heroe <|-- Mago
+Heroe <|-- Guerrero
+Criatura <|-- Dragon
+Criatura <|-- Troll
+Criatura <|-- Espectro
+
+
+
+@enduml
