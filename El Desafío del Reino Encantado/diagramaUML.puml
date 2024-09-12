@@ -4,6 +4,11 @@ skinparam classAttributeIconSize 0
 class Jugador{
 - nivelExperiencia: int
 - heroe: Heroe
+- ubicacion: Ubicacion
++ viajarUbicacionNeutral(): Ubicacion
++ viajarUbicacionConCriatura(): Ubicacion
++ mejorarPersonaje(): boolean
++ recolectarRecompensa()
 }
 
 abstract class Personaje{
@@ -20,22 +25,31 @@ abstract class Heroe{
 }
 
 abstract class Criatura{
+- nivel: int
+}
+
+interface HabilidadEspecial{
++ usarHabilidadEspecial(): void
 }
 
 class Mago{
 + curar()
 + inmunecontraespectros()
++ usarHabilidadEspecial(): void
 }
 
 class Guerrero{
 + duplicarAtaque()
 + derribarTrolls()
++ usarHabilidadEspecial(): void
 }
 
 class Arquero{
 - punteria: int
 - agilidad: int
 + esquivarGolpe(): boolean
++ calcularPrecision():  boolean
++ usarHabilidadEspecial(): void
 }
 
 class Dragon{
@@ -45,6 +59,32 @@ class Troll{
 }
 
 class Espectro{
+}
+
+interface Atacable{
++ atacar(objetivo: Atacable)
++ defender(danio: int)
+}
+
+class Pelea{
+-heroe: Heroe
+-criatura: Criatura
+}
+
+class Mapa{
+- ubicaciones: List<Ubicacion>
+}
+
+class Ubicacion{
+- nombre: String
+- criatura: Criatura
+- tesoro: Tesoro
++ ubicacionNeutral(): boolean
+}
+
+class Tesoro{
+- nombre: String
++ devolverDescripcion(): String
 }
 
 
@@ -57,7 +97,15 @@ Heroe <|-- Guerrero
 Criatura <|-- Dragon
 Criatura <|-- Troll
 Criatura <|-- Espectro
-
-
+Heroe <-> Pelea: Lucha
+Pelea <-> Criatura: Lucha
+Heroe <|.. Atacable: implementa
+Criatura <|.. Atacable: implementa
+Mapa <-- Jugador: Acceso a Ubicaciones
+Jugador "1" -> "1" Ubicacion: Se encuentra
+Mapa "1" *- "1..*" Ubicacion: contiene
+Ubicacion "1" o--- "0..1" Criatura: contiene
+Ubicacion "1" o- "0..1" Tesoro: contiene
+HabilidadEspecial .|> Heroe : implementa
 
 @enduml
