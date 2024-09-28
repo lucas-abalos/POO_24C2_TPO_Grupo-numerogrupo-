@@ -22,14 +22,11 @@ abstract class Personaje{
 
 abstract class Heroe{
 - duenio : Jugador
++ usarHabilidadEspecial(): void
 }
 
 abstract class Criatura{
 - nivel: int
-}
-
-interface HabilidadEspecial{
-+ usarHabilidadEspecial(): void
 }
 
 class Mago{
@@ -69,6 +66,7 @@ interface Atacable{
 class Pelea{
 -heroe: Heroe
 -criatura: Criatura
++usarHabilidadEspecial(): void
 }
 
 class Mapa{
@@ -99,13 +97,12 @@ Criatura <|-- Troll
 Criatura <|-- Espectro
 Heroe <-> Pelea: Lucha
 Pelea <-> Criatura: Lucha
-Heroe <|.. Atacable: implementa
-Criatura <|.. Atacable: implementa
+Heroe ..|> Atacable: implementa
+Criatura ..|> Atacable: implementa
 Mapa <-- Jugador: Acceso a Ubicaciones
 Jugador "1" -> "1" Ubicacion: Se encuentra
 Mapa "1" *- "1..*" Ubicacion: contiene
 Ubicacion "1" o--- "0..1" Criatura: contiene
 Ubicacion "1" o- "0..1" Tesoro: contiene
-HabilidadEspecial .|> Heroe : implementa
 
 @enduml
