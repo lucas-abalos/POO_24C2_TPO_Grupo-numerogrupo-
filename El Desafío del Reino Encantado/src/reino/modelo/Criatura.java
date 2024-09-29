@@ -1,17 +1,20 @@
 package reino.modelo;
 
-public class Criatura extends Personaje implements Atacable{
+public abstract class Criatura extends Personaje implements Atacable{
     private int nivel;
 
-    @Override
-    public void atacar(Atacable objetivo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atacar'");
+    public Criatura(String nombre, int nivelAtaque, int nivelDefensa, int nivel) {
+        super(nombre, nivelAtaque, nivelDefensa);
+        this.nivel = nivel;
+    }
+    
+    public int getNivel() {
+        return nivel;
     }
 
     @Override
-    public void defender(int danio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'defender'");
-    }
+    public abstract int usarHabilidadEspecialAtaque(Personaje defensor, int cantGolpes);
+    @Override
+    public abstract int usarHabilidadEspecialDefensa(Personaje atacante, int cantGolpes);
+
 }

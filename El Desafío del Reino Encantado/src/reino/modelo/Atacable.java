@@ -1,6 +1,6 @@
 package reino.modelo;
 
 public interface Atacable {
-    void atacar(Atacable objetivo); 
-    void defender(int danio); 
+    int usarHabilidadEspecialAtaque(Personaje defensor, int cantGolpes);
+    int usarHabilidadEspecialDefensa(Personaje atacante, int cantGolpes);
 }

@@ -1,19 +1,20 @@
 package reino.modelo;
 
 public abstract class Heroe extends Personaje implements Atacable{
-	private Jugador duenio;
-	
-    public abstract void usarHabilidadEspecial(); 
+    private Jugador duenio;
 
-    @Override
-    public void atacar(Atacable objetivo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atacar'");
+    public Heroe(String nombre, int nivelAtaque, int nivelDefensa) {
+        super(nombre, nivelAtaque, nivelDefensa);
+    }
+
+    public void setDuenio(Jugador duenio){
+        this.duenio = duenio;
     }
 
     @Override
-    public void defender(int danio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'defender'");
-    }
+    public abstract int usarHabilidadEspecialAtaque(Personaje defensor, int cantGolpes);
+
+    @Override
+    public abstract int usarHabilidadEspecialDefensa(Personaje atacante, int cantGolpes);
+
 }
