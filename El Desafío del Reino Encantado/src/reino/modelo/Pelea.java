@@ -47,31 +47,34 @@ public class Pelea {
     }
 
     private void atacar(Personaje atacante, Personaje defensor, int cantGolpes) {
-        // TODO: Recrear un caso y verificar el que el calculo de danio funcione siempre, cuando tiene que acertar golpes, esquivar y sumar danio especial.
         int restarVida = 0;
         int ataqueHabEspecial = ((Atacable) atacante).usarHabilidadEspecialAtaque(defensor, cantGolpes);
         int defensaHabEspecial = ((Atacable) defensor).usarHabilidadEspecialDefensa(atacante, cantGolpes);
         int danio = atacante.getNivelAtaque() + ataqueHabEspecial - defensaHabEspecial;
 
-        if (defensor.getNivelDefensa() > 0) {
-            if(atacante.getNivelAtaque() + ataqueHabEspecial > defensaHabEspecial){ // Si el ataque es mayor al poder de DEFENSA por HABILIDAD ESPECIAL resto defensa
-                if(danio > defensor.getNivelDefensa()){ // En este caso además de bajarle toda la defensa tengo que bajarle la vida
-                    restarVida = Math.abs(defensor.getNivelDefensa() - danio);
-                }
-                defensor.setNivelDefensa(defensor.getNivelDefensa() - danio);
-            }
-        }
-
-        if (defensor.getNivelDefensa() == 0) {
-            if(restarVida > 0){ // Si restarVida es mayor a 0 es porq le dieron una piña que le bajo toda la defensa y también le tiene que bajar vida
-                defensor.setVida(defensor.getVida() - restarVida);
-            }
-            else{ // En este caso caso entra cuando ya tenía toda la defensa bajo previo al ataque actual
-                defensor.setVida(defensor.getVida() - danio);
-            }
-            System.out.println(atacante.getNombre() + " inflige " + danio + " puntos de daño a " + defensor.getNombre());
-        } else {
+        if(danio < 0){// Si daño es negativo significa que el defensor bloqueó el ataque. Esto pasa cuando la defensaHabEspecial es muy alta
             System.out.println(defensor.getNombre() + " bloquea el ataque de " + atacante.getNombre());
+        }
+        else{
+            if (defensor.getNivelDefensa() > 0) {
+                if(atacante.getNivelAtaque() + ataqueHabEspecial > defensaHabEspecial){ // Si el ataque es mayor al poder de DEFENSA por HABILIDAD ESPECIAL resto defensa
+                    if(danio > defensor.getNivelDefensa()){ // En este caso además de bajarle toda la defensa tengo que bajarle la vida
+                        restarVida = Math.abs(defensor.getNivelDefensa() - danio);
+                    }
+                    defensor.setNivelDefensa(defensor.getNivelDefensa() - danio);
+                }
+            }
+            if (defensor.getNivelDefensa() == 0) {
+                if(restarVida > 0){ // Si restarVida es mayor a 0 es porq le dieron una piña que le bajo toda la defensa y también le tiene que bajar vida
+                    defensor.setVida(defensor.getVida() - restarVida);
+                }
+                else{ // En este caso caso entra cuando ya tenía toda la defensa bajo previo al ataque actual
+                    defensor.setVida(defensor.getVida() - danio);
+                }
+                System.out.println(atacante.getNombre() + " inflige " + danio + " puntos de daño a " + defensor.getNombre());
+            } else {
+                System.out.println(defensor.getNombre() + " bloquea el ataque de " + atacante.getNombre());
+            }
         }
     }
 }
