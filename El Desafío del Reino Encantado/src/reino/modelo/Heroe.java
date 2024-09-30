@@ -11,6 +11,10 @@ public abstract class Heroe extends Personaje implements Atacable{
         this.duenio = duenio;
     }
 
+    public Jugador devolverDuenio(){
+        return duenio;
+    }
+
     @Override
     public abstract int usarHabilidadEspecialAtaque(Personaje defensor, int cantGolpes);
 

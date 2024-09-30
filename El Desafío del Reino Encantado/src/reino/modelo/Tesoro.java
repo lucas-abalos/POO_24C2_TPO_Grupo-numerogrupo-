@@ -1,9 +1,12 @@
 package reino.modelo;
 
 public class Tesoro {
-    private String nombre;
+    private final String nombre;
 
+    public Tesoro(String nombre) {
+        this.nombre = nombre;
+    }
     public String devolverDescripcion(){
-        
+        return nombre;
     }
 }

@@ -1,8 +1,8 @@
 package reino.modelo;
 
 public class Pelea {
-    private Heroe heroe;
-    private Criatura criatura;
+    private final Heroe heroe;
+    private final Criatura criatura;
 
     public Pelea(Heroe heroe, Criatura criatura) {
         this.heroe = heroe;
@@ -30,7 +30,7 @@ public class Pelea {
         }
 
         //TODO: Cuando finalice la pelea crear un posible método en heroes para hacer una acción, como CURAR VIDA AL %100 EN MAGOS
-        
+
         return heroe.getVida() <= 0; // Si gano el heroe devuelvo True y sigue el curso del juego, si es false se termina la partida
     }
 

@@ -16,4 +16,10 @@ public class Jugador {
     }
     public void recolectarRecompensa(){
     }
+    public int devolverExperiencia(){
+        return nivelExperiencia;
+    }
+    public Heroe devolverHeroe(){
+        return heroe;
+    }
 }

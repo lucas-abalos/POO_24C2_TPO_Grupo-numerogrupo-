@@ -8,4 +8,13 @@ public class Ubicacion {
     public boolean ubicacionNeutral(){
         return true;
     }
+    public String devuelveNombre(){
+        return nombre;
+    }
+    public boolean tieneCriatura(){
+        return criatura != null;
+    }
+    public boolean tieneTesoro(){
+        return tesoro != null;
+    }
 }
