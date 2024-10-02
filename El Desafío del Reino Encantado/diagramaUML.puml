@@ -18,11 +18,12 @@ abstract class Personaje{
 - nivelDefensa: int
 + mejorarAtaque(cantidad: int): boolean
 + mejorarDefensa(cantidad: int): boolean
++ estaVivo(): boolean
 }
 
 abstract class Heroe{
 - duenio : Jugador
-+ usarHabilidadEspecial(): void
++ ganoPelea(criatura: Criatura): void
 }
 
 abstract class Criatura{
@@ -30,43 +31,52 @@ abstract class Criatura{
 }
 
 class Mago{
-+ curar()
-+ inmunecontraespectros()
-+ usarHabilidadEspecial(): void
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
++ ganoPelea(criatura: Criatura): void
 }
 
 class Guerrero{
-+ duplicarAtaque()
-+ derribarTrolls()
-+ usarHabilidadEspecial(): void
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
++ ganoPelea(criatura: Criatura): void
 }
 
 class Arquero{
 - punteria: int
 - agilidad: int
-+ esquivarGolpe(): boolean
-+ calcularPrecision():  boolean
-+ usarHabilidadEspecial(): void
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
++ ganoPelea(criatura: Criatura): void
 }
 
 class Dragon{
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
 }
 
 class Troll{
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
 }
 
 class Espectro{
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
 }
 
 interface Atacable{
-+ atacar(objetivo: Atacable)
-+ defender(danio: int)
++ usarHabilidadEspecialAtaque(personaje: Personaje, cantGolpes int): int
++ usarHabilidadEspecialDefensa(personaje: Personaje, cantGolpes int): int
 }
 
 class Pelea{
 -heroe: Heroe
 -criatura: Criatura
-+usarHabilidadEspecial(): void
++ iniciarPelea(): boolean
++ turnoHeroe(cantGolpes: int): boolean
++ turnoCriatura(cantGolpes: int): boolean
++ atacar(atacante: Personaje, defensor: Personaje, cantGolpes: int): void
 }
 
 class Mapa{
@@ -97,8 +107,8 @@ Criatura <|-- Troll
 Criatura <|-- Espectro
 Heroe <-> Pelea: Lucha
 Pelea <-> Criatura: Lucha
-Heroe ..|> Atacable: implementa
-Criatura ..|> Atacable: implementa
+Heroe <|.. Atacable: implementa
+Criatura <|.. Atacable: implementa
 Mapa <-- Jugador: Acceso a Ubicaciones
 Jugador "1" -> "1" Ubicacion: Se encuentra
 Mapa "1" *- "1..*" Ubicacion: contiene
