@@ -21,5 +21,5 @@ public abstract class Heroe extends Personaje implements Atacable{
     @Override
     public abstract int usarHabilidadEspecialDefensa(Personaje atacante, int cantGolpes);
 
-    public abstract void ganoPelea();
+    public abstract void ganoPelea(Criatura criatura);
 }

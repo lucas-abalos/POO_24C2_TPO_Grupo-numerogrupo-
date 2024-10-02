@@ -27,7 +27,7 @@ public class Pelea {
             System.out.println("El héroe ha sido derrotado por la " + criatura.getNombre() + "!");
         } else if (criatura.getVida() <= 0) {
             System.out.println("¡El héroe " + heroe.getNombre() + " ha derrotado a la " + criatura.getNombre() + "!");
-            heroe.ganoPelea(); // En este método defino por ejemplo que los magos curen su vida al 100% si ganan una batalla
+            heroe.ganoPelea(criatura); 
         }
         return heroe.getVida() > 0; // Si gano el heroe devuelvo True y sigue el curso del juego, si es false se termina la partida
     }

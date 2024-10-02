@@ -1,7 +1,7 @@
 package reino.modelo;
 
 public abstract class Criatura extends Personaje implements Atacable{
-    private int nivel;
+    private final int nivel;
 
     public Criatura(String nombre, int nivelAtaque, int nivelDefensa, int nivel) {
         super(nombre, nivelAtaque, nivelDefensa);

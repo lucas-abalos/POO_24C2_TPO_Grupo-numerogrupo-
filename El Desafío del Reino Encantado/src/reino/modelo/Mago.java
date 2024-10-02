@@ -19,8 +19,8 @@ public class Mago extends Heroe{
     }
 
     @Override
-    public void ganoPelea(){
-        // Cuando el mago gana una pelea cura su vida al %100
+    public void ganoPelea(Criatura criatura){
+		this.devolverDuenio().incrementarExperiencia(criatura.getNivel());
         this.setVida(100); 
     }
 }

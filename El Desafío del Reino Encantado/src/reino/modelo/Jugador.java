@@ -22,4 +22,8 @@ public class Jugador {
     public Heroe devolverHeroe(){
         return heroe;
     }
+
+    public void incrementarExperiencia(int cantidad){
+        this.nivelExperiencia += cantidad;
+    }
 }

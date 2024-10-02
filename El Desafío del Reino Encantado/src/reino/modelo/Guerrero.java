@@ -22,6 +22,7 @@ public class Guerrero extends Heroe {
     }
 
     @Override
-    public void ganoPelea(){
+    public void ganoPelea(Criatura criatura){
+		this.devolverDuenio().incrementarExperiencia(criatura.getNivel());
     }
 }
