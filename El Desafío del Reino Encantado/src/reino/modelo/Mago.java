@@ -17,4 +17,10 @@ public class Mago extends Heroe{
         }
         return 0;
     }
+
+    @Override
+    public void ganoPelea(){
+        // Cuando el mago gana una pelea cura su vida al %100
+        this.setVida(100); 
+    }
 }

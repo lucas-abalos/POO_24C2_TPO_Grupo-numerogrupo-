@@ -20,4 +20,8 @@ public class Guerrero extends Heroe {
     public int usarHabilidadEspecialDefensa(Personaje atacante, int cantGolpes) {
         return 0;
     }
+
+    @Override
+    public void ganoPelea(){
+    }
 }

@@ -52,4 +52,8 @@ public class Arquero extends Heroe{
 		}
         return 0;
     }
+
+	@Override
+    public void ganoPelea(){
+    }
 }
